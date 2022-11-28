@@ -34,7 +34,7 @@
               <div class="col-lg-6">
                 <div class="info d-flex justify-content-center flex-column p-4 h-100">
                   <div class="py-5">
-                    <h1 class="display-6 fw-bold">Football Association</h1>
+                    <h1 class="display-6 fw-bold">Referee App</h1>
                     <p class="fw-light mb-0">Rwanda Primus National League</p>
                   </div>
                 </div>
@@ -49,7 +49,7 @@
                       <label class="label-material" for="login-username">Email Address</label>
                     </div>
                     <div class="input-material-group mb-4">
-                      <input class="input-material" id="login-password" type="password" name="code" required data-validate-field="password">
+                      <input class="input-material" id="login-password" type="number" name="code" required data-validate-field="password">
                       <label class="label-material" for="login-password">Access Code</label>
                     </div>
                     <button class="btn btn-primary mb-3" name="submit" id="login" type="submit">Login</button><br>
@@ -66,11 +66,7 @@
           </div>
         </div>
       </div>
-      <div class="text-center position-absolute bottom-0 start-0 w-100 z-index-20">
-        <p class="text-white">Design by <a class="external">Bootstrapious</a>
-          <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-        </p>
-      </div>
+   
     </div>
    
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
