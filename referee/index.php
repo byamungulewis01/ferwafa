@@ -71,7 +71,7 @@
 
                                     </td>
                                     <td>
-                                        <a href="report.php?team=<?= $team->home; ?>&week=<?= $team->week; ?>&home">
+                                        <a href="report.php?team=<?= $team->home; ?>&week=<?= $team->week; ?>">
                                             <h4 class="mt-2"><?= $team->home; ?></h4>
                                         </a>
                                     </td>
@@ -104,7 +104,7 @@
 
                                     </td>
                                     <td>
-                                        <a href="report.php?team=<?= $team->away; ?>&week=<?= $team->week; ?>&away">
+                                        <a href="report.php?team=<?= $team->away; ?>&week=<?= $team->week; ?>">
                                             <h4 class="mt-2"><?= $team->away; ?></h4>
                                         </a>
                                     </td>
@@ -129,21 +129,82 @@
         </div>
         <div class="col-lg-6">
             <div class="card card-body mailbox">
-                <h5 class="card-title">All Teams</h5>
+                <h5 class="card-title">All Referees</h5>
                 <div class="message-center">
                     <?php
-                                   $sql = 'SELECT * FROM `team` limit 4';
-                                   $statement = $connection->prepare($sql);
-                                   $statement->execute();
-                                   $Teams = $statement->fetchAll(PDO::FETCH_OBJ);
-                                   foreach($Teams as $team):
-                                   ?>
+                    $sql = 'SELECT * FROM `weekly_fixtures` WHERE access_code=?';
+                    $statement = $connection->prepare($sql);
+                    $statement->execute([$_SESSION['access']]);
+                    $Referees = $statement->fetchAll(PDO::FETCH_OBJ);
+                    foreach($Referees as $referee):
+                        $ref = $referee->referee;
+                        $ass1 = $referee->assistant1;
+                        $ass2 = $referee->assistant2;
+                        $offi = $referee->official;
+
+                    ?>
+                    <?php endforeach; ?>
+                    <?php
+                    $sql = 'SELECT * FROM `referee` WHERE referee_id=?';
+                    $statement = $connection->prepare($sql);
+                    $statement->execute([$ref]);
+                    $Referees = $statement->fetchAll(PDO::FETCH_OBJ);
+                    foreach($Referees as $referee):
+                    ?>
                     <a href="#">
-                        <span class="round" style="background:white;"><img src="../Logo/<?= $team->logon; ?>" alt="user"
+                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>" alt="user"
                                 width="50" height="50"></span>
                         <div class="mail-contnet">
-                            <h6 class="text-dark font-medium mb-0"><?= $team->name; ?></h6>
-                            <span class="mail-desc"><?= $team->stadium; ?></span>
+                            <h6 class="text-dark font-medium mb-0"><?= $referee->fname; ?> <?= $referee->lname; ?></h6>
+                            <span class="mail-desc">Referee</span>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                    <?php
+                    $sql = 'SELECT * FROM `referee` WHERE referee_id=?';
+                    $statement = $connection->prepare($sql);
+                    $statement->execute([$ass1]);
+                    $Referees = $statement->fetchAll(PDO::FETCH_OBJ);
+                    foreach($Referees as $referee):
+                    ?>
+                    <a href="#">
+                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>" alt="user"
+                                width="50" height="50"></span>
+                        <div class="mail-contnet">
+                            <h6 class="text-dark font-medium mb-0"><?= $referee->fname; ?> <?= $referee->lname; ?></h6>
+                            <span class="mail-desc">assistant Referee 1</span>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                    <?php
+                    $sql = 'SELECT * FROM `referee` WHERE referee_id=?';
+                    $statement = $connection->prepare($sql);
+                    $statement->execute([$ass2]);
+                    $Referees = $statement->fetchAll(PDO::FETCH_OBJ);
+                    foreach($Referees as $referee):
+                    ?>
+                    <a href="#">
+                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>" alt="user"
+                                width="50" height="50"></span>
+                        <div class="mail-contnet">
+                            <h6 class="text-dark font-medium mb-0"><?= $referee->fname; ?> <?= $referee->lname; ?></h6>
+                            <span class="mail-desc">assistant Referee 2</span>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                    <?php
+                    $sql = 'SELECT * FROM `referee` WHERE referee_id=?';
+                    $statement = $connection->prepare($sql);
+                    $statement->execute([$offi]);
+                    $Referees = $statement->fetchAll(PDO::FETCH_OBJ);
+                    foreach($Referees as $referee):
+                    ?>
+                    <a href="#">
+                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>" alt="user"
+                                width="50" height="50"></span>
+                        <div class="mail-contnet">
+                            <h6 class="text-dark font-medium mb-0"><?= $referee->fname; ?> <?= $referee->lname; ?></h6>
+                            <span class="mail-desc">Official </span>
                         </div>
                     </a>
                     <?php endforeach; ?>

@@ -28,6 +28,7 @@ header("location: ../teams.php");
     <!-- Bootstrap Core CSS -->
     <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- This page CSS -->
     <!-- chartist CSS -->
     <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">

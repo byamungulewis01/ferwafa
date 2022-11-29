@@ -18,6 +18,9 @@
      
    }
  ?>
+<?php  if(isset($_SESSION['msg'])) {?>
+<?php echo $_SESSION['msg']; ?>
+<?php unset($_SESSION['msg']); } ?>
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
 <div class="page-wrapper">
@@ -46,7 +49,7 @@
                                    $Teams = $statement->fetchAll(PDO::FETCH_OBJ);
                                    foreach($Teams as $team):
                                    ?>
-                        <a href="?team=<?=  $team->team_id; ?>">
+                        <a href="?player_id=<?= $team->member_id; ?>">
                             <span class="round round-success"><?= $team->number; ?></span>
                             <div class="mail-contnet">
                                 <h6 class="text-dark font-medium mb-0"><?= $team->fname; ?> <?= $team->lname; ?></h6>
@@ -95,7 +98,7 @@
                                         $post = 'Physiotherapist';
                                     }
                                    ?>
-                        <a href="?team=<?=  $team->member_id; ?>">
+                        <a href="?staff_id=<?= $team->member_id; ?>">
                             <span class="round round-info"><?= $team->post; ?></span>
                             <div class="mail-contnet">
                                 <h6 class="text-dark font-medium mb-0"><?= $team->fname; ?> <?= $team->lname; ?></h6>
@@ -131,7 +134,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="row" id="select2">
+                            <div class="row">
                                 <div class="col-md-6">
                                     <input type="text" placeholder="Number" name="number" require
                                         class="form-control form-control-line">
@@ -197,6 +200,114 @@
                         </div>
                     </form>
                     <?php   }
+                        elseif(isset($_GET['player_id'])) {
+                            ?>
+                    <form class="form-horizontal form-material mx-2" method="post" action="controls/editplayer.php"
+                        enctype="multipart/form-data">
+                        <input type="hidden" name="member_id" value="<?= $_GET['player_id']; ?>">
+                        <?php
+                $sql = 'SELECT * FROM `team_member` WHERE member_id =?';
+                $statement = $connection->prepare($sql);
+                $statement->execute([$_GET['player_id']]);
+                $Teams = $statement->fetchAll(PDO::FETCH_OBJ);
+                foreach($Teams as $team):
+            ?>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" value="<?= $team->fname; ?>" class="form-control form-control-line"
+                                    name="fname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" value="<?= $team->lname; ?>" name="lname"
+                                    class="form-control form-control-line" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <select name="position" class="form-control form-control-line" required>
+                                        <option selected="" value="<?= $team->position; ?>"><?= $team->position; ?>
+                                        <option value="Goal Keeper">Goal Keeper</option>
+                                        <option value="Deffence">Deffence</option>
+                                        <option value="Midfielder">Midfielder</option>
+                                        <option value="Attacker">Attacker</option>
+                                    </select>
+
+                            </div>
+
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <button name="submit" class="btn btn-sm btn-success">Edit</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button name="delete" class="btn btn-sm btn-danger">Delete</button>
+                            </div>
+                            </div>
+                           
+                        </div>
+                        <?php endforeach; ?>
+                    </form>
+                    <?php   }
+            elseif(isset($_GET['staff_id'])) {
+                ?>
+                    <form class="form-horizontal form-material mx-2" method="post" action="controls/editstaff.php"
+                        enctype="multipart/form-data">
+                        <input type="hidden" name="member_id" value="<?= $_GET['staff_id']; ?>">
+                        <?php
+                $sql = 'SELECT * FROM `team_member` WHERE member_id =?';
+                $statement = $connection->prepare($sql);
+                $statement->execute([$_GET['staff_id']]);
+                $Teams = $statement->fetchAll(PDO::FETCH_OBJ);
+                foreach($Teams as $team):
+            ?>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" value="<?= $team->fname; ?>" class="form-control form-control-line"
+                                    name="fname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" value="<?= $team->lname; ?>" name="lname"
+                                    class="form-control form-control-line" required>
+                            </div>
+                        </div>
+                        <div class="form-group" id="select2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <select name="post" class="form-control form-control-line">
+                                        <option value="none" selected="" disabled="">Select Position</option>
+                                        <option value="HC">Head coach</option>
+                                        <option value="AC">Assistant Coach</option>
+                                        <option value="GC">Gk Coach</option>
+                                        <option value="Do">Doctor</option>
+                                        <option value="Ph">Physio</option>
+                                    </select>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <button name="submit" class="btn btn-sm btn-success">Edit</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button name="delete" class="btn btn-sm btn-danger">Delete</button>
+                            </div>
+                            </div>
+                           
+                        </div>
+                        <?php endforeach; ?>
+                    </form>
+                    <?php  }
                             else {                   
                 ?>
                     <center class="mt-4">

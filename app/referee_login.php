@@ -21,13 +21,13 @@ if (isset($_POST['submit'])) {
     }
     else
     {
-       $_SESSION['expire']; 
+       $_SESSION['expire'] = '<span class="text-sm text-danger">Invalid Code Check on You Email</span>';
        header("Location: ../referee.php");
     }
  }
  else
  { 
-    $_SESSION['invalidMail']; 
+    $_SESSION['invalidMail'] = '<span class="text-sm text-danger">Invalid Email Write Correct Email</span>'; 
     header("Location: ../referee.php");
  }
 }

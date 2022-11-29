@@ -95,12 +95,12 @@
                         enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="file" name="file" class="form-control form-control-line">
+                                <input type="file" accept=".csv" name="file" class="form-control form-control-line" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <select class="form-control form-control-line" name="season">
+                                <select class="form-control form-control-line" name="season" required>
                                     <option selected disabled>Select Season year</option>
                                     <option value="2018 - 2019">2018 - 2019</option>
                                     <option value="2019 - 2020">2019 - 2020</option>

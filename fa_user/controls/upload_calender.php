@@ -10,23 +10,21 @@ if(isset($_POST['import'])){
         header("Location: ../calender.php?Pending");
     }
     else {
-        
+    
       $filename =$_FILES["file"]["tmp_name"];
         if($_FILES["file"]["size"] > 0){
             $file = fopen($filename, "r");
             while(($data = fgetcsv($file, 10000, ",")) !== FALSE){
-                $sql = 'INSERT INTO calender (home, home_scores, away, away_scores, week, stadium, date, time ,season)
-                VALUES(:home, :home_scores, :away, :away_scores, :week, :stadium, :date, :time, :season)';
+                $sql = 'INSERT INTO calender (home, away, week, stadium, date, time ,season)
+                VALUES(:home,  :away, :week, :stadium, :date, :time, :season)';
                 $statement = $connection->prepare($sql);
                 if($statement->execute([
                     ':home' => $data[0],
-                     ':home_scores' => $data[1], 
-                     ':away' => $data[2], 
-                     ':away_scores' => $data[3],
-                      ':week' => $data[4],
-                    ':stadium' => $data[5], 
-                    ':date' => $data[6], 
-                    ':time' => $data[7],
+                     ':away' => $data[1], 
+                      ':week' => $data[2],
+                    ':stadium' => $data[3], 
+                    ':date' => $data[4], 
+                    ':time' => $data[5],
                     ':season' => $season
                 ]))
                 {

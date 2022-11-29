@@ -54,10 +54,10 @@
                     </div>
                     <button class="btn btn-primary mb-3" name="submit" id="login" type="submit">Login</button><br>
                     <?php if(isset($_SESSION['expire'])) {?>
-                   <span class="text-sm text-danger">Invalid Code Check on You Email</span>
+                   <?php echo $_SESSION['expire']; ?>
                    <?php unset($_SESSION['expire']); ?>
                     <?php  }elseif(isset($_SESSION['invalidMail'])) {?>
-                   <span class="text-sm text-danger">Invalid Email Write Correct Email</span>
+                      <?php echo $_SESSION['invalidMail']; ?>
                    <?php unset($_SESSION['invalidMail']); } ?>
                   </form>
                 </div>

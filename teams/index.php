@@ -53,29 +53,52 @@
                     </div>
                     <!-- End Notification -->
                     <!-- Start Feeds -->
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Feeds</h5>
-                                <div class="comment-widgets scrollable">
-                                <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row m-t-0">
-                                    <div class="p-2"><img src="../assets/images/users/1.jpg" alt="user" width="50"
-                                            class="rounded-circle"></div>
-                                    <div class="comment-text w-100">
-                                        <h6 class="font-medium">James Anderson</h6>
-                                        <span class="m-b-15 d-block">Lorem Ipsum is simply  </span>
-                                        <div class="comment-footer">
-                                            <span class="text-muted float-end">April 14, 2021</span> <span
-                                                class="badge bg-primary">Pending</span> <span
-                                                class="action-icons">
-                                                <a href="#"><i class="ti-pencil-alt">Allow</i></a>
-                                         
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>               
+                        <div class="card-body">
+                        <h5 class="card-title">Player</h5>
+                        <?php
+                                   $sql = 'SELECT * FROM `team_member` WHERE role_in_team="player" AND team=?';
+                                   $statement = $connection->prepare($sql);
+                                   $statement->execute([$_SESSION['Team_id']]);
+                                   $Teams = $statement->fetchAll(PDO::FETCH_OBJ);
+                                   foreach($Teams as $team):
+                                   ?>
+                        <div class="d-flex flex-row comment-row m-t-0">
+                            <div class="p-2"><span class="round round-info"><?= $team->number; ?></span></div>
+                            <div class="comment-text">
+                                <h6 class="font-medium"><?= $team->fname; ?> <?= $team->lname; ?></h6>
+
+                                <div class="comment-footer">
+                                    <?php 
+                                    if ($team->yellow >= 5) {
+                                        echo '<span title="Due to have 5 Yellow cards" class="badge bg-danger">Suspend</span>';
+                                    }
+                                    elseif ($team->double_yellow > 0) {
+                                        echo '<span title="Last Days you have Double Yellows" class="badge bg-danger">Suspend</span>';
+                                    }
+                                    elseif ($team->red > 0) {
+                                        echo '<span title="Have Red Card in Previous Match" class="badge bg-danger">Suspend</span>';
+                                    }
+                                    else {
+                                        echo '<span class="badge bg-info">Allowed</span>';
+                                       ?>
+                                        <span class="action-icons">
+                                        <a href="?add=<?= $team->member_id; ?>"><i class="fa fa-plus-square-o"></i></a>
+                                    </span>
+                                       <?php
+                                    }
+                                    ?>
+                                
+                                    <span class="text-muted float-end"><?= $team->position; ?></span>
+                                </div>
                             </div>
+                        </div>
+                        <?php endforeach; ?>
+
+
+                    </div>
+
                         </div>
                             </div>
                         </div>

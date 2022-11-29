@@ -16,7 +16,16 @@ $stmt->execute();
 $sql1 = 'UPDATE `team_member` SET red=1 WHERE red = 2';
 $stmt = $connection->prepare($sql1);
 $stmt->execute(); 
+$sql1 = 'UPDATE `team_member` SET red=2 WHERE red = 3';
+$stmt = $connection->prepare($sql1);
+$stmt->execute(); 
+$sql1 = 'UPDATE `team_member` SET red=3 WHERE red = 4';
+$stmt = $connection->prepare($sql1);
+$stmt->execute(); 
 $sql1 = 'UPDATE `team_member` SET double_yellow=0 WHERE double_yellow = 1';
+$stmt = $connection->prepare($sql1);
+$stmt->execute(); 
+$sql1 = 'UPDATE `team_member` SET yellow=0 WHERE yellow= 5';
 $stmt = $connection->prepare($sql1);
 $stmt->execute(); 
 // Remove ibihano Byatanzwe Previous Day
@@ -44,6 +53,10 @@ $stmt = $connection->prepare($sql1);
 $stmt->execute(); 
 // Double Yellow Card Roles
 $sql1 = 'UPDATE `team_member` SET double_yellow=1 WHERE double_yellow=2';
+$stmt = $connection->prepare($sql1);
+$stmt->execute(); 
+// Yellow Card Roles
+$sql1 = 'UPDATE `team_member` SET yellow=5 WHERE yellow=6';
 $stmt = $connection->prepare($sql1);
 $stmt->execute(); 
 

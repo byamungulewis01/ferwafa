@@ -69,11 +69,7 @@
           </div>
         </div>
       </div>
-      <div class="text-center position-absolute bottom-0 start-0 w-100 z-index-20">
-        <p class="text-white">Design by <a class="external">Aliane and Lewis</a>
-          <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-        </p>
-      </div>
+     
     </div>
    
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->

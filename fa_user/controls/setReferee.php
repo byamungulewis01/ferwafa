@@ -33,9 +33,8 @@ if (isset($_POST['submit'])) {
     $stmt = $connection->prepare($sql);
     if($stmt->execute([$match_id,$Referee,$Ass1,$Ass2,$Official,$access_Code]))
     {
-     // send_mail($recipient,$subject,$message);
+     send_mail($recipient,$subject,$message);
       $recipient =  $email;
-      $link = 'http://127.0.0.1/lewis/referee.php';
       $subject = "Rwanda Primus national League";
       $message ="";
       $message .= '<h3>Match Day '.$week.' Fixture</h3>';
@@ -43,15 +42,14 @@ if (isset($_POST['submit'])) {
       $message .= '<strong>Stadium: </strong>'.$stadium.'<br>';
       $message .= '<strong>Date: </strong>'.$date.'<br>';
       $message .= '<strong>Time: </strong>'.$time.' <br>';
-      $message .= 'Access Link: <a href="'.$link.'">Report</a><br>';
       $message .= 'Match Access Code: <strong>'.$access_Code.'</strong>';
-      // if(send_mail($recipient,$subject,$message))
-      // {    
+      if(send_mail($recipient,$subject,$message))
+      {    
         header("Location: ../fixture.php?set=$match_id");
-      //     }
-      // else {      
-      //   header("Location: ../fixture.php?Email_error");
-      //     }  
+          }
+      else {      
+        header("Location: ../fixture.php?Email_error");
+          }  
 
   } 
 }
