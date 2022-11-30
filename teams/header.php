@@ -140,3 +140,6 @@ header("location: ../teams.php");
             </div>
             <!-- End Sidebar scroll-->
         </aside>
+        <?php  if(isset($_SESSION['msg'])) {?>
+        <?php echo $_SESSION['msg']; ?>
+        <?php unset($_SESSION['msg']); } ?>

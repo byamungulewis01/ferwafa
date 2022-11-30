@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'init.php';
 if(isset($_POST['import'])){
     $season = $_POST['season'];
@@ -7,7 +8,8 @@ if(isset($_POST['import'])){
     $statement->execute([':season' => $season]);
     $row = $statement->rowCount();
     if ($row > 0) {
-        header("Location: ../calender.php?Pending");
+        $_SESSION['msg'] = '<script>swal("Warning", "This Year still Pending", "success");</script>';
+        header("Location: ../calender.php");
     }
     else {
     
@@ -15,7 +17,8 @@ if(isset($_POST['import'])){
         if($_FILES["file"]["size"] > 0){
             $file = fopen($filename, "r");
             while(($data = fgetcsv($file, 10000, ",")) !== FALSE){
-                $sql = 'INSERT INTO calender (home, away, week, stadium, date, time ,season)
+                try {
+                    $sql = 'INSERT INTO calender (home, away, week, stadium, date, time ,season)
                 VALUES(:home,  :away, :week, :stadium, :date, :time, :season)';
                 $statement = $connection->prepare($sql);
                 if($statement->execute([
@@ -32,9 +35,13 @@ if(isset($_POST['import'])){
                     $statement = $connection->prepare($sql);
                     $statement->execute();
                 }
+                } catch(PDOException $e) {
+                    echo $e->getMessage();
+                }
             }
             fclose($file);
-            header("Location: ../calender.php?imported");
+            $_SESSION['msg'] = '<script>swal("Good job!", "Calendar Uploaded Succesfully", "success");</script>';
+            header("Location: ../calender.php");
         }
         else {
             echo "Please rechech your file";

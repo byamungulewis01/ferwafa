@@ -20,7 +20,14 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category">Teams</p>
-                                    <p class="card-title">8<p>
+                        <?php
+                        $sql1 = 'SELECT * FROM team';
+                        $stmt = $connection->prepare($sql1);
+                        $stmt->execute();
+                        $row = $stmt->rowCount();
+                        ?>
+                                    <p class="card-title"><?= $row; ?><p>
+
                                 </div>
                             </div>
                         </div>
@@ -46,7 +53,13 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category">Referees</p>
-                                    <p class="card-title">12<p>
+                                    <?php
+                        $sql1 = 'SELECT * FROM referee';
+                        $stmt = $connection->prepare($sql1);
+                        $stmt->execute();
+                        $row = $stmt->rowCount();
+                        ?>
+                                    <p class="card-title"><?= $row; ?><p>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +85,13 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category">Players</p>
-                                    <p class="card-title">23<p>
+                                    <?php
+                        $sql1 = 'SELECT * FROM team_member';
+                        $stmt = $connection->prepare($sql1);
+                        $stmt->execute();
+                        $row = $stmt->rowCount();
+                        ?>
+                                    <p class="card-title"><?= $row; ?><p>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +117,13 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category">Card</p>
-                                    <p class="card-title">5<p>
+                                    <?php
+                                $sql1 = 'SELECT * FROM match_day_reports WHERE card != ""';
+                                $stmt = $connection->prepare($sql1);
+                                $stmt->execute();
+                                $row = $stmt->rowCount();
+                        ?>
+                                    <p class="card-title"><?= $row; ?><p>
                                 </div>
                             </div>
                         </div>

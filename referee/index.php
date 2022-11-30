@@ -87,7 +87,7 @@
                                     </td>
                                 </tr>
                                 <tr class="active">
-                                        <?php
+                                    <?php
                                             $sql1 = 'SELECT team_id,name,logon FROM team WHERE name=:name';
                                             $stmt = $connection->prepare($sql1);
                                             $stmt->execute([':name' => $team->away]);
@@ -108,16 +108,16 @@
                                             <h4 class="mt-2"><?= $team->away; ?></h4>
                                         </a>
                                     </td>
-                                    <td>    
-                                    <?php
+                                    <td>
+                                        <?php
                                         $sql1 = 'SELECT SUM(goal) AS T_goal FROM match_day_reports WHERE team=? AND week=?';
                                         $stmt = $connection->prepare($sql1);
                                         $stmt->execute([$teamB,$team->week]);
                                         while($data=$stmt->fetch(PDO::FETCH_ASSOC))
                                         $T_goal = $data['T_goal'];
                                         ?>
-                                    <h3><?= $T_goal; ?></h3>
-                                </td>
+                                        <h3><?= $T_goal; ?></h3>
+                                    </td>
 
                                 </tr>
                                 <?php endforeach; ?>
@@ -152,8 +152,8 @@
                     foreach($Referees as $referee):
                     ?>
                     <a href="#">
-                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>" alt="user"
-                                width="50" height="50"></span>
+                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>"
+                                alt="user" width="50" height="50"></span>
                         <div class="mail-contnet">
                             <h6 class="text-dark font-medium mb-0"><?= $referee->fname; ?> <?= $referee->lname; ?></h6>
                             <span class="mail-desc">Referee</span>
@@ -168,8 +168,8 @@
                     foreach($Referees as $referee):
                     ?>
                     <a href="#">
-                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>" alt="user"
-                                width="50" height="50"></span>
+                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>"
+                                alt="user" width="50" height="50"></span>
                         <div class="mail-contnet">
                             <h6 class="text-dark font-medium mb-0"><?= $referee->fname; ?> <?= $referee->lname; ?></h6>
                             <span class="mail-desc">assistant Referee 1</span>
@@ -184,8 +184,8 @@
                     foreach($Referees as $referee):
                     ?>
                     <a href="#">
-                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>" alt="user"
-                                width="50" height="50"></span>
+                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>"
+                                alt="user" width="50" height="50"></span>
                         <div class="mail-contnet">
                             <h6 class="text-dark font-medium mb-0"><?= $referee->fname; ?> <?= $referee->lname; ?></h6>
                             <span class="mail-desc">assistant Referee 2</span>
@@ -200,8 +200,8 @@
                     foreach($Referees as $referee):
                     ?>
                     <a href="#">
-                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>" alt="user"
-                                width="50" height="50"></span>
+                        <span class="round" style="background:white;"><img src="../Profile/<?= $referee->image; ?>"
+                                alt="user" width="50" height="50"></span>
                         <div class="mail-contnet">
                             <h6 class="text-dark font-medium mb-0"><?= $referee->fname; ?> <?= $referee->lname; ?></h6>
                             <span class="mail-desc">Official </span>
@@ -211,6 +211,13 @@
 
                 </div>
             </div>
+        </div>
+        <div class="col-lg-6" style="text-align:center;">
+            <a href="logout.php">
+                <div class="card card-body">
+                    <h5>Sign out</h5>
+                </div>
+            </a>
         </div>
     </div>
 

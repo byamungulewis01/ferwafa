@@ -127,6 +127,13 @@
         </div>
     </div>
 </div>
+<div class="col-lg-6" style="text-align:center;">
+            <a href="./">
+                <div class="card card-body">
+                    <h5>Dashboard</h5>
+                </div>
+            </a>
+        </div>
 
 </div>
 <!-- End Notification -->

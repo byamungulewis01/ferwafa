@@ -56,8 +56,7 @@
                       <label class="label-material" for="login-password">Password</label>
                     </div>
                     <button class="btn btn-primary mb-3" name="submit" id="login" type="submit">Login</button><br>
-                    <br>
-                    <a class="text-sm text-paleBlue" href="create.php">Create Account</a><br>
+                  
                   </form>
                 </div>
               </div>

@@ -37,6 +37,7 @@ if (!isset($_SESSION['fa_user']) or empty($_SESSION['fa_user'])) {
     <link href="../assets/css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="../assets/css/pages/dashboard1.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- You can change the theme colors from here -->
     <link href="../assets/css/colors/default.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -153,3 +154,6 @@ if (!isset($_SESSION['fa_user']) or empty($_SESSION['fa_user'])) {
             </div>
             <!-- End Sidebar scroll-->
         </aside>
+        <?php  if(isset($_SESSION['msg'])) {?>
+        <?php echo $_SESSION['msg']; ?>
+        <?php unset($_SESSION['msg']); } ?>

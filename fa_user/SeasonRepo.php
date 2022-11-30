@@ -312,7 +312,6 @@
                     <center class="mt-4">
                         <img src="../Logo/Ferwafa_logo.png" class="img-circle" width="150" />
                         <h4 class="card-title mt-2">Primus National League</h4>
-                        <h6 class="card-subtitle">Week <?= $team->week; ?> Fixtures</h6>
                         <div class="row text-center justify-content-md-center">
                             <div class="col-2"></div>
                             <div class="col-2"></div>

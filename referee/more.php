@@ -138,8 +138,6 @@
 
 
         </div>
-
-
     </div>
     <!-- End Notification -->
 </div>
