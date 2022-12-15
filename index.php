@@ -26,8 +26,8 @@
   </head>
   <body>
   <?php  if(isset($_SESSION['msg'])) {?>
-                        <?php echo $_SESSION['msg']; ?>
-                   <?php unset($_SESSION['msg']); } ?>
+        <?php echo $_SESSION['msg']; ?>
+   <?php unset($_SESSION['msg']); } ?>
     <div class="login-page">
       <div class="container d-flex align-items-center position-relative py-5">
         <div class="card shadow-sm w-100 rounded overflow-hidden bg-none">
